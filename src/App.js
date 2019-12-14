@@ -19,6 +19,10 @@ const TodoApp = () => {
     function remove (item) {
         updateTodos(todos.filter(todo => todo !== item));
     }
+
+    function clearAll () {
+        updateTodos([]);
+    }
    
     return (
         <div className="App">
@@ -29,7 +33,7 @@ const TodoApp = () => {
                     <input type="text" className="form-control" placeholder="To do" onChange={e => setTodo(e.target.value)} value={todo} name="todo" />
                     <div className="input-group-append">
                         <button className="btn btn-primary" type="button" onClick={add} disabled={!todo}>Add</button>
-                    </div>
+                    </div>                   
                 </div>
 
                 <ul className="list-display">
@@ -42,6 +46,8 @@ const TodoApp = () => {
                                 </li>
                     })}
                 </ul>
+                
+                {todos.length > 0 && <button className="btn btn-danger" onClick={clearAll}>Clear list</button>}
             </header>
         </div>
     );
