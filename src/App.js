@@ -5,14 +5,14 @@ import './App.css';
 const TodoApp = () => {
 
     const [todo, setTodo] = useState({});
-    const [todos, pushTodo] = useState([]);
+    const [todos, updateTodos] = useState([]);
 
     function add () {
-        pushTodo([...todos, todo]);
+        updateTodos([...todos, todo]);
     }
 
     function remove (item) {
-        pushTodo(todos.filter(todo => todo !== item));
+        updateTodos(todos.filter(todo => todo !== item));
     }
    
     return (
