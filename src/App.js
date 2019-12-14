@@ -4,11 +4,16 @@ import './App.css';
 
 const TodoApp = () => {
 
-    const [todo, setTodo] = useState({});
+    const [todo, setTodo] = useState("");
     const [todos, updateTodos] = useState([]);
 
     function add () {
-        updateTodos([...todos, todo]);
+        if (todos.includes(todo)) {
+
+        } else {
+            updateTodos([...todos, todo]);
+            setTodo("")
+        }
     }
 
     function remove (item) {
@@ -21,9 +26,9 @@ const TodoApp = () => {
                 <img src={logo} className="App-logo" alt="logo" />            
 
                 <div className="input-group mb-3">
-                    <input type="text" className="form-control" placeholder="To do" onChange={e => setTodo(e.target.value)} name="todo" />
+                    <input type="text" className="form-control" placeholder="To do" onChange={e => setTodo(e.target.value)} value={todo} name="todo" />
                     <div className="input-group-append">
-                        <button className="btn btn-primary" type="button" onClick={add}>Add</button>
+                        <button className="btn btn-primary" type="button" onClick={add} disabled={!todo}>Add</button>
                     </div>
                 </div>
 
