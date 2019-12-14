@@ -40,3 +40,7 @@
 .input-group, .list-display {
   width: 20%
 }
+
+Button.close, Button.close:hover{
+  color: white;
+}
