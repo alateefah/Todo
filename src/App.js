@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 const TodoApp = () => {
 
+    
+    function getLocalStorage () {
+        let storedTodos = localStorage.getItem("todos");
+        if (storedTodos) {
+            updateTodos(JSON.parse(storedTodos))
+        }
+    }
+
+    useEffect(() => {
+        getLocalStorage();
+    }, [])
+
     const [todo, setTodo] = useState("");
     const [todos, updateTodos] = useState([]);
+    useEffect(()=>{
+        updateLocalStorage()
+    })
 
     function add () {
         if (todos.includes(todo)) {
-
+            //alert error
         } else {
-            updateTodos([...todos, todo]);
-            setTodo("")
+            updateTodos([...todos, todo]);   
+            setTodo("");
         }
     }
 
@@ -22,6 +37,10 @@ const TodoApp = () => {
 
     function clearAll () {
         updateTodos([]);
+    }
+
+    function updateLocalStorage () {   
+        localStorage.setItem("todos", JSON.stringify(todos));
     }
    
     return (
