@@ -22,9 +22,16 @@ const TodoApp = () => {
         updateLocalStorage()
     })
 
+    const [error, setError] = useState("")
+    useEffect(()=> {
+        setTimeout(()=> {
+            setError("");
+        }, 3000)
+    })
+
     function add () {
         if (todos.includes(todo)) {
-            //alert error
+            setError("Todo item already exists")
         } else {
             updateTodos([...todos, todo]);   
             setTodo("");
@@ -47,6 +54,8 @@ const TodoApp = () => {
         <div className="App">
       	    <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />            
+
+                {error && <div className="alert alert-danger" role="alert">{error}</div>}
 
                 <div className="input-group mb-3">
                     <input type="text" className="form-control" placeholder="To do" onChange={e => setTodo(e.target.value)} value={todo} name="todo" />
